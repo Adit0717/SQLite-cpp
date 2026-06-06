@@ -35,6 +35,14 @@ int main(int argc, char *argv[]) {
                                 (static_cast<unsigned char>(buffer[0]) << 8));
 
     std::cout << "database page size: " << page_size << std::endl;
+
+    // Challenge #2: Find the number of tables in the database
+    database_file.seekg(100 + 3);
+    database_file.read(buffer, 2);
+    unsigned short table_num = (static_cast<unsigned char>(buffer[1]) |
+                                (static_cast<unsigned char>(buffer[0]) << 8));
+
+    std::cout << "number of tables: " << table_num << std::endl;
   }
 
   return 0;
